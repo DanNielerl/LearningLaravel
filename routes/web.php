@@ -21,11 +21,19 @@ Route::get('/', HomeController::class);
 //     return view('welcome');
 // });
 
-Route::get('cursos', [CursoController::class, 'index']);
 
-Route::get('cursos/create', [CursoController::class, 'create']);
+//GRUPOS DE RUTAS
+//se cambia la definicion de los tres controladores por solo un grupo de controladores
 
-Route::get('cursos/{curso}', [CursoController::class, 'show']);
+Route::controller(CursoController::class)->group(function () {
+    Route::get('cursos', 'index');
+    Route::get('cursos/create', 'create');
+    Route::get('cursos/{curso}', 'show');
+});
+
+// Route::get('cursos', [CursoController::class, 'index']);
+// Route::get('cursos/create', [CursoController::class, 'create']);
+// Route::get('cursos/{curso}', [CursoController::class, 'show']);
 
 // Route::get('cursos/{curso}/{categoria?}', function($curso, $categoria = null){
 //     if($categoria){
